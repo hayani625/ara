@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Absensi Face Scan - SMK Mulia Hati Insani</title>
+
+    <style>
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            color: #17352f;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(134, 239, 172, 0.35),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(16, 185, 129, 0.25),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #064e3b 0%,
+                    #0f766e 45%,
+                    #a7f3d0 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(4, 78, 59, 0.98),
+                    rgba(15, 118, 110, 0.95)
+                );
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+
+            background: white;
+            border-radius: 50%;
+            padding: 7px;
+
+            margin-bottom: 10px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #d1fae5;
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .container {
+            width: min(1100px, 94%);
+            margin: 30px auto;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .card {
+            background: rgba(255, 255, 255, 0.96);
+
+            border-radius: 20px;
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.12);
+
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card h2 {
+            color: #065f46;
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        #halamanLogin {
+            display: block;
+        }
+
+        #halamanAbsensi {
+            display: none;
+        }
+
+        .login-box {
+            max-width: 450px;
+            margin: 55px auto;
+        }
+
+        .login-logo {
+            display: block;
+
+            width: 110px;
+            height: 110px;
+
+            object-fit: contain;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+            background: white;
+            padding: 7px;
+
+            box-shadow:
+                0 10px 30px rgba(6, 78, 59, 0.2);
+        }
+
+        .login-title {
+            text-align: center;
+            color: #065f46;
+            margin-bottom: 8px;
+        }
+
+        .login-description {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        label {
+            display: block;
+
+            margin-top: 15px;
+            margin-bottom: 7px;
+
+            color: #334155;
+            font-weight: 700;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 2px solid #d1fae5;
+            border-radius: 10px;
+
+            background: #f8fffb;
+            color: #17352f;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #10b981;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(16, 185, 129, 0.12);
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        button {
+            border: none;
+            border-radius: 10px;
+
+            padding: 12px 18px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            width: 100%;
+
+            margin-top: 20px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #047857,
+                    #0f766e
+                );
+
+            box-shadow:
+                0 7px 18px rgba(4, 120, 87, 0.25);
+        }
+
+        .btn-primary:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #065f46,
+                    #115e59
+                );
+        }
+
+        .btn-camera {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-camera:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-scan {
+            background: #047857;
+            color: white;
+        }
+
+        .btn-scan:hover {
+            background: #065f46;
+        }
+
+        .btn-stop {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-stop:hover {
+            background: #b91c1c;
+        }
+
+        .btn-logout {
+            position: absolute;
+
+            right: 25px;
+            top: 25px;
+
+            background: #ef4444;
+            color: white;
+
+            padding: 10px 16px;
+        }
+
+        .btn-logout:hover {
+            background: #dc2626;
+        }
+
+        .btn-hapus {
+            background: #fee2e2;
+            color: #b91c1c;
+
+            padding: 7px 11px;
+            font-size: 12px;
+        }
+
+        .btn-hapus:hover {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-hapus-semua {
+            background: #dc2626;
+            color: white;
+
+            margin-top: 18px;
+        }
+
+        .btn-hapus-semua:hover {
+            background: #b91c1c;
+        }
+
+        .btn-export {
+            background: #047857;
+            color: white;
+
+            margin-top: 18px;
+            margin-left: 8px;
+        }
+
+        .btn-export:hover {
+            background: #065f46;
+        }
+
+
+        /* =====================================================
+           PESAN
+        ===================================================== */
+
+        .error,
+        .success,
+        .warning {
+            padding: 12px;
+
+            border-radius: 10px;
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            font-weight: 600;
+        }
+
+        .error {
+            display: none;
+
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .success {
+            display: none;
+
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .info {
+            background:
+                linear-gradient(
+                    135deg,
+                    #ecfdf5,
+                    #d1fae5
+                );
+
+            color: #065f46;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            border-left: 5px solid #10b981;
+        }
+
+
+        /* =====================================================
+           DASHBOARD
+        ===================================================== */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 20px;
+
+            border-radius: 16px;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 90px;
+            height: 90px;
+
+            border-radius: 50%;
+
+            right: -30px;
+            top: -30px;
+
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-title {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .stat-number {
+            margin-top: 5px;
+
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+        .stat-hadir {
+            background:
+                linear-gradient(
+                    135deg,
+                    #15803d,
+                    #22c55e
+                );
+        }
+
+        .stat-izin {
+            background:
+                linear-gradient(
+                    135deg,
+                    #a16207,
+                    #eab308
+                );
+        }
+
+        .stat-sakit {
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d4ed8,
+                    #3b82f6
+                );
+        }
+
+        .stat-alpa {
+            background:
+                linear-gradient(
+                    135deg,
+                    #b91c1c,
+                    #ef4444
+                );
+        }
+
+
+        /* =====================================================
+           CAMERA
+        ===================================================== */
+
+        .camera-box {
+            max-width: 600px;
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+
+            width: 100%;
+            max-width: 500px;
+
+            margin: 15px auto;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #111827;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        #video,
+        #videoScan {
+            width: 100%;
+
+            display: block;
+
+            transform: scaleX(-1);
+
+            background: #111827;
+        }
+
+        .face-guide {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 55%;
+            height: 75%;
+
+            transform:
+                translate(-50%, -50%);
+
+            border:
+                3px dashed #34d399;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            box-shadow:
+                0 0 20px rgba(52, 211, 153, 0.3);
+        }
+
+        .camera-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            justify-content: center;
+
+            margin-top: 15px;
+        }
+
+        .camera-buttons button {
+            min-width: 130px;
+        }
+
+        .preview {
+            display: none;
+
+            margin: 15px auto;
+
+            width: 160px;
+
+            border-radius: 15px;
+
+            border: 3px solid #10b981;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =====================================================
+           TOOLBAR
+        ===================================================== */
+
+        .toolbar {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr;
+
+            gap: 12px;
+
+            margin-top: 15px;
+        }
+
+
+        /* =====================================================
+           TABLE
+        ===================================================== */
+
+        .table-container {
+            overflow-x: auto;
+
+            margin-top: 15px;
+
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 750px;
+        }
+
+        th,
+        td {
+            padding: 13px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            text-align: center;
+        }
+
+        th {
+            background:
+                linear-gradient(
+                    135deg,
+                    #065f46,
+                    #0f766e
+                );
+
+            color: white;
+
+            font-size: 13px;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #ecfdf5;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8fffb;
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 11px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .status-hadir {
+            color: #166534;
+            background: #dcfce7;
+        }
+
+        .status-izin {
+            color: #854d0e;
+            background: #fef9c3;
+        }
+
+        .status-sakit {
+            color: #1e40af;
+            background: #dbeafe;
+        }
+
+        .status-alpa {
+            color: #991b1b;
+            background: #fee2e2;
+        }
+
+
+        /* =====================================================
+           EMPTY DATA
+        ===================================================== */
+
+        .empty {
+            padding: 35px !important;
+
+            color: #64748b;
+
+            text-align: center;
+
+            font-style: italic;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            text-align: center;
+
+            color: white;
+
+            padding: 25px 15px;
+
+            font-size: 14px;
+
+            text-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .dashboard {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .toolbar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 25px 15px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            header p {
+                font-size: 13px;
+            }
+
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            .card {
+                padding: 18px;
+                border-radius: 15px;
+            }
+
+            .login-box {
+                margin: 35px auto;
+            }
+
+            .login-logo {
+                width: 95px;
+                height: 95px;
+            }
+
+            .btn-logout {
+                position: static;
+
+                width: 100%;
+
+                margin-top: 15px;
+            }
+
+            .dashboard {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .btn-export,
+            .btn-hapus-semua {
+                width: 100%;
+
+                margin-left: 0;
+            }
+
+            .camera-buttons {
+                flex-direction: column;
+            }
+
+            .camera-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         HALAMAN LOGIN
+    ===================================================== -->
+
+    <div id="halamanLogin">
+
+        <header>
+
+            <img
+                src="logo.png"
+                alt="Logo SMK Mulia Hati Insani"
+                class="logo"
+            >
+
+            <h1>
+                SMK MULIA HATI INSANI
+            </h1>
+
+            <p>
+                Sistem Informasi Absensi Siswa
+            </p>
+
+        </header>
+
+
+        <div class="container">
+
+            <div class="card login-box">
+
+                <img
+                    src="logo.png"
+                    alt="Logo Sekolah"
+                    class="login-logo"
+                >
+
+                <h2 class="login-title">
+                    Selamat Datang 👋
+                </h2>
+
+                <p class="login-description">
+                    Silakan login untuk mengakses sistem absensi.
+                </p>
+
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Masukkan username"
+                    autocomplete="username"
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Masukkan password"
+                    autocomplete="current-password"
+                    onkeypress="enterLogin(event)"
+                >
+
+
+                <button
+                    class="btn-primary"
+                    onclick="login()"
+                >
+                    🔐 LOGIN
+                </button>
+
+
+                <div
+                    class="error"
+                    id="pesanError"
+                >
+                    ❌ Username atau password salah!
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HALAMAN ABSENSI
+    ===================================================== -->
+
+    <div id="halamanAbsensi">
+
+        <header>
+
+            <img
+                src="logo.png"
+                alt="Logo SMK Mulia Hati Insani"
+                class="logo"
+            >
+
+            <h1>
+                SMK MULIA HATI INSANI
+            </h1>
+
+            <p>
+                Sistem Absensi Scan Wajah
+            </p>
+
+            <button
+                class="btn-logout"
+                onclick="logout()"
+            >
+                🚪 LOGOUT
+            </button>
+
+        </header>
+
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 STATISTIK
+            ================================================== -->
+
+            <div class="dashboard">
+
+                <div class="stat-card stat-hadir">
+
+                    <div class="stat-title">
+                        HADIR
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="jumlahHadir"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card stat-izin">
+
+                    <div class="stat-title">
+                        IZIN
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="jumlahIzin"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card stat-sakit">
+
+                    <div class="stat-title">
+                        SAKIT
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="jumlahSakit"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card stat-alpa">
+
+                    <div class="stat-title">
+                        ALPA
+                    </div>
+
+                    <div
+                        class="stat-number"
+                        id="jumlahAlpa"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PENDAFTARAN WAJAH
+            ================================================== -->
+
+            <div class="card">
+
+                <h2>
+                    👤 Daftarkan Wajah Siswa
+                </h2>
+
+                <div class="info">
+                    Daftarkan wajah siswa terlebih dahulu.
+                    Foto akan disimpan pada browser perangkat ini.
+                </div>
+
+
+                <label for="namaDaftar">
+                    Nama Siswa
+                </label>
+
+                <input
+                    type="text"
+                    id="namaDaftar"
+                    placeholder="Nama lengkap siswa"
+                >
+
+
+                <label for="nisDaftar">
+                    NIS
+                </label>
+
+                <input
+                    type="text"
+                    id="nisDaftar"
+                    placeholder="NIS siswa"
+                >
+
+
+                <label for="kelasDaftar">
+                    Kelas
+                </label>
+
+                <select id="kelasDaftar">
+
+                    <option value="">
+                        -- Pilih Kelas --
+                    </option>
+
+                    <option value="X TKJ">
+                        X TKJ 1
+                    </option>
+
+                    <option value="X TKR">
+                        X Tkj 2
+                    </option>
+
+                    <option value="XI TKJ">
+                        X TKJ 3
+                    </option>
+
+                    <option value="XI TKR">
+                        X MM 1
+                    </option>
+
+                    <option value="XII TKJ">
+                        X MM 2
+                    </option>
+
+                    <option value="XII TKR">
+                        X MM 3
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 1
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 2
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 2
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 2
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl RPL 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl RPL 2
+                    </option>
+                </select>
+
+
+                <!-- CAMERA PENDAFTARAN -->
+
+                <div class="camera-box">
+
+                    <div class="video-wrapper">
+
+                        <video
+                            id="video"
+                            autoplay
+                            playsinline
+                        ></video>
+
+                        <div class="face-guide"></div>
+
+                    </div>
+
+
+                    <div class="camera-buttons">
+
+                        <button
+                            class="btn-camera"
+                            onclick="bukaKamera()"
+                        >
+                            📷 Buka Kamera
+                        </button>
+
+                        <button
+                            class="btn-camera"
+                            onclick="ambilFoto()"
+                        >
+                            📸 Ambil Foto
+                        </button>
+
+                        <button
+                            class="btn-stop"
+                            onclick="tutupKamera()"
+                        >
+                            ⛔ Tutup Kamera
+                        </button>
+
+                    </div>
+
+
+                    <canvas
+                        id="canvas"
+                        style="display:none"
+                    ></canvas>
+
+
+                    <img
+                        id="preview"
+                        class="preview"
+                        alt="Preview wajah siswa"
+                    >
+
+
+                    <button
+                        class="btn-primary"
+                        onclick="daftarWajah()"
+                    >
+                        👤 SIMPAN DATA WAJAH
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="success"
+                    id="pesanDaftar"
+                >
+                    ✅ Data wajah berhasil disimpan!
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCAN WAJAH
+            ================================================== -->
+
+            <div class="card">
+
+                <h2>
+                    📷 Scan Wajah untuk Absensi
+                </h2>
+
+                <div class="info">
+                    Arahkan wajah siswa ke kamera kemudian tekan
+                    <strong>SCAN WAJAH</strong>.
+                </div>
+
+
+                <div class="camera-box">
+
+                    <div class="video-wrapper">
+
+                        <video
+                            id="videoScan"
+                            autoplay
+                            playsinline
+                        ></video>
+
+                        <div class="face-guide"></div>
+
+                    </div>
+
+
+                    <div class="camera-buttons">
+
+                        <button
+                            class="btn-camera"
+                            onclick="bukaKameraScan()"
+                        >
+                            📷 Buka Kamera
+                        </button>
+
+                        <button
+                            class="btn-scan"
+                            onclick="scanWajah()"
+                        >
+                            🔍 SCAN WAJAH
+                        </button>
+
+                        <button
+                            class="btn-stop"
+                            onclick="tutupKameraScan()"
+                        >
+                            ⛔ Tutup
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="success"
+                    id="pesanScan"
+                ></div>
+
+
+                <div class="warning">
+
+                    ⚠️ Versi ini masih menggunakan
+                    pencocokan foto sederhana/demo.
+
+                    Untuk pengenalan wajah otomatis,
+                    diperlukan library face recognition
+                    atau backend AI.
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DATA ABSENSI
+            ================================================== -->
+
+            <div class="card">
+
+                <h2>
+                    📊 Data Absensi
+                </h2>
+
+
+                <!-- SEARCH & FILTER -->
+
+                <div class="toolbar">
+
+                    <input
+                        type="search"
+                        id="search"
+                        placeholder="🔍 Cari nama atau NIS..."
+                        oninput="tampilkanData()"
+                    >
+
+
+                    <select
+                        id="filterKelas"
+                        onchange="tampilkanData()"
+                    >
+
+                        <option value="">
+                            Semua Kelas
+                        </option>
+
+                        <option value="X TKJ">
+                        X TKJ 1
+                    </option>
+
+                    <option value="X TKR">
+                        X Tkj 2
+                    </option>
+
+                    <option value="XI TKJ">
+                        X TKJ 3
+                    </option>
+
+                    <option value="XI TKR">
+                        X MM 1
+                    </option>
+
+                    <option value="XII TKJ">
+                        X MM 2
+                    </option>
+
+                    <option value="XII TKR">
+                        X MM 3
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 1
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 2
+                    </option>
+
+                    <option value="XII TKR">
+                        X RPL 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 2
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl TKJ 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 2
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl MM 3
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl RPL 1
+                    </option>
+
+                    <option value="XII TKR">
+                        Xl RPL 2
+                    </option>
+
+                    </select>
+
+
+                    <select
+                        id="filterStatus"
+                        onchange="tampilkanData()"
+                    >
+
+                        <option value="">
+                            Semua Status
+                        </option>
+
+                        <option value="Hadir">
+                            Hadir
+                        </option>
+
+                        <option value="Izin">
+                            Izin
+                        </option>
+
+                        <option value="Sakit">
+                            Sakit
+                        </option>
+
+                        <option value="Alpa">
+                            Alpa
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>NIS</th>
+                                <th>Kelas</th>
+                                <th>Status</th>
+                                <th>Waktu</th>
+                                <th>Aksi</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="dataAbsensi"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <button
+                    class="btn-hapus-semua"
+                    onclick="hapusSemua()"
+                >
+                    🗑️ Hapus Semua Data
+                </button>
+
+
+                <button
+                    class="btn-export"
+                    onclick="exportCSV()"
+                >
+                    📥 Export CSV
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <footer>
+            © 2026 SMK Mulia Hati Insani
+            • Sistem Absensi Scan Wajah
+        </footer>
+
+    </div>
+
+
+
+    <script>
+
+        /* =====================================================
+           KONFIGURASI LOGIN
+        ===================================================== */
+
+        const USERNAME = "admin";
+        const PASSWORD = "12345";
+
+
+        /* =====================================================
+           DATA LOCAL STORAGE
+        ===================================================== */
+
+        let dataAbsensi = [];
+        let dataWajah = [];
+
+        try {
+
+            dataAbsensi =
+                JSON.parse(
+                    localStorage.getItem("dataAbsensiSMK")
+                ) || [];
+
+        } catch (error) {
+
+            dataAbsensi = [];
+
+        }
+
+
+        try {
+
+            dataWajah =
+                JSON.parse(
+                    localStorage.getItem("dataWajahSMK")
+                ) || [];
+
+        } catch (error) {
+
+            dataWajah = [];
+
+        }
+
+
+        /* =====================================================
+           CAMERA STREAM
+        ===================================================== */
+
+        let streamDaftar = null;
+        let streamScan = null;
+
+
+        /* =====================================================
+           SIMPAN DATA ABSENSI
+        ===================================================== */
+
+        function simpanData() {
+
+            localStorage.setItem(
+                "dataAbsensiSMK",
+                JSON.stringify(dataAbsensi)
+            );
+
+        }
+
+
+        /* =====================================================
+           SIMPAN DATA WAJAH
+        ===================================================== */
+
+        function simpanWajah() {
+
+            localStorage.setItem(
+                "dataWajahSMK",
+                JSON.stringify(dataWajah)
+            );
+
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        function login() {
+
+            const username =
+                document
+                    .getElementById("username")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            if (
+                username === USERNAME &&
+                password === PASSWORD
+            ) {
+
+                sessionStorage.setItem(
+                    "sudahLogin",
+                    "true"
+                );
+
+                document
+                    .getElementById("pesanError")
+                    .style.display = "none";
+
+                tampilkanAbsensi();
+
+            } else {
+
+                document
+                    .getElementById("pesanError")
+                    .style.display = "block";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ENTER LOGIN
+        ===================================================== */
+
+        function enterLogin(event) {
+
+            if (event.key === "Enter") {
+                login();
+            }
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        function logout() {
+
+            const yakin =
+                confirm(
+                    "Apakah kamu yakin ingin logout?"
+                );
+
+
+            if (!yakin) {
+                return;
+            }
+
+
+            sessionStorage.removeItem(
+                "sudahLogin"
+            );
+
+
+            tutupKamera();
+            tutupKameraScan();
+
+
+            document
+                .getElementById("halamanAbsensi")
+                .style.display = "none";
+
+
+            document
+                .getElementById("halamanLogin")
+                .style.display = "block";
+
+
+            document
+                .getElementById("username")
+                .value = "";
+
+
+            document
+                .getElementById("password")
+                .value = "";
+
+        }
+
+
+        /* =====================================================
+           TAMPILKAN HALAMAN ABSENSI
+        ===================================================== */
+
+        function tampilkanAbsensi() {
+
+            document
+                .getElementById("halamanLogin")
+                .style.display = "none";
+
+
+            document
+                .getElementById("halamanAbsensi")
+                .style.display = "block";
+
+
+            tampilkanData();
+            updateStatistik();
+
+        }
+
+
+        /* =====================================================
+           KAMERA PENDAFTARAN
+        ===================================================== */
+
+        async function bukaKamera() {
+
+            try {
+
+                if (streamDaftar) {
+                    tutupKamera();
+                }
+
+
+                streamDaftar =
+                    await navigator.mediaDevices
+                        .getUserMedia({
+                            video: {
+                                facingMode: "user"
+                            },
+                            audio: false
+                        });
+
+
+                document
+                    .getElementById("video")
+                    .srcObject = streamDaftar;
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "❌ Kamera tidak dapat dibuka.\n\n" +
+                    "Pastikan browser memiliki izin " +
+                    "untuk menggunakan kamera."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TUTUP KAMERA PENDAFTARAN
+        ===================================================== */
+
+        function tutupKamera() {
+
+            if (!streamDaftar) {
+                return;
+            }
+
+
+            streamDaftar
+                .getTracks()
+                .forEach(
+                    track => track.stop()
+                );
+
+
+            streamDaftar = null;
+
+
+            document
+                .getElementById("video")
+                .srcObject = null;
+
+        }
+
+
+        /* =====================================================
+           AMBIL FOTO WAJAH
+        ===================================================== */
+
+        function ambilFoto() {
+
+            if (!streamDaftar) {
+
+                alert(
+                    "📷 Silakan buka kamera terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+            const video =
+                document.getElementById("video");
+
+            const canvas =
+                document.getElementById("canvas");
+
+
+            if (
+                video.videoWidth === 0 ||
+                video.videoHeight === 0
+            ) {
+
+                alert(
+                    "⚠️ Kamera belum siap. " +
+                    "Tunggu beberapa saat."
+                );
+
+                return;
+
+            }
+
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+
+            const context =
+                canvas.getContext("2d");
+
+
+            /*
+                Karena tampilan video dibalik
+                menggunakan scaleX(-1), foto juga
+                dibuat mirror agar sesuai tampilan.
+            */
+
+            context.save();
+
+            context.translate(
+                canvas.width,
+                0
+            );
+
+            context.scale(-1, 1);
+
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            context.restore();
+
+
+            const foto =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.8
+                );
+
+
+            const preview =
+                document.getElementById("preview");
+
+
+            preview.src = foto;
+            preview.style.display = "block";
+
+        }
+
+
+        /* =====================================================
+           DAFTAR WAJAH SISWA
+        ===================================================== */
+
+        function daftarWajah() {
+
+            const nama =
+                document
+                    .getElementById("namaDaftar")
+                    .value
+                    .trim();
+
+
+            const nis =
+                document
+                    .getElementById("nisDaftar")
+                    .value
+                    .trim();
+
+
+            const kelas =
+                document
+                    .getElementById("kelasDaftar")
+                    .value;
+
+
+            const preview =
+                document
+                    .getElementById("preview");
+
+
+            const foto =
+                preview.src;
+
+
+            /* VALIDASI */
+
+            if (
+                nama === "" ||
+                nis === "" ||
+                kelas === ""
+            ) {
+
+                alert(
+                    "⚠️ Mohon lengkapi nama, NIS, dan kelas."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !foto ||
+                foto === window.location.href
+            ) {
+
+                alert(
+                    "📸 Silakan ambil foto wajah terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+            /* CEK NIS */
+
+            const nisSudahAda =
+                dataWajah.some(
+                    siswa => siswa.nis === nis
+                );
+
+
+            if (nisSudahAda) {
+
+                alert(
+                    "⚠️ NIS tersebut sudah terdaftar."
+                );
+
+                return;
+
+            }
+
+
+            /* DATA SISWA */
+
+            const siswa = {
+
+                id: Date.now(),
+
+                nama: nama,
+
+                nis: nis,
+
+                kelas: kelas,
+
+                foto: foto
+
+            };
+
+
+            dataWajah.push(siswa);
+
+            simpanWajah();
+
+
+            /* RESET FORM */
+
+            document
+                .getElementById("namaDaftar")
+                .value = "";
+
+
+            document
+                .getElementById("nisDaftar")
+                .value = "";
+
+
+            document
+                .getElementById("kelasDaftar")
+                .value = "";
+
+
+            preview.src = "";
+            preview.style.display = "none";
+
+
+            /* PESAN */
+
+            const pesan =
+                document.getElementById(
+                    "pesanDaftar"
+                );
+
+
+            pesan.style.display = "block";
+
+
+            setTimeout(
+                () => {
+
+                    pesan.style.display = "none";
+
+                },
+                3000
+            );
+
+        }
+
+
+        /* =====================================================
+           KAMERA SCAN
+        ===================================================== */
+
+        async function bukaKameraScan() {
+
+            try {
+
+                if (streamScan) {
+                    tutupKameraScan();
+                }
+
+
+                streamScan =
+                    await navigator.mediaDevices
+                        .getUserMedia({
+                            video: {
+                                facingMode: "user"
+                            },
+                            audio: false
+                        });
+
+
+                document
+                    .getElementById("videoScan")
+                    .srcObject = streamScan;
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "❌ Kamera tidak dapat dibuka.\n\n" +
+                    "Pastikan izin kamera diberikan."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TUTUP KAMERA SCAN
+        ===================================================== */
+
+        function tutupKameraScan() {
+
+            if (!streamScan) {
+                return;
+            }
+
+
+            streamScan
+                .getTracks()
+                .forEach(
+                    track => track.stop()
+                );
+
+
+            streamScan = null;
+
+
+            document
+                .getElementById("videoScan")
+                .srcObject = null;
+
+        }
+
+
+        /* =====================================================
+           SCAN WAJAH
+        ===================================================== */
+
+        function scanWajah() {
+
+            if (!streamScan) {
+
+                alert(
+                    "📷 Silakan buka kamera scan terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+            if (dataWajah.length === 0) {
+
+                alert(
+                    "👤 Belum ada wajah siswa yang didaftarkan."
+                );
+
+                return;
+
+            }
+
+
+            /*
+                =================================================
+                DEMO FACE SCAN
+                =================================================
+
+                Bagian ini belum melakukan pengenalan wajah
+                menggunakan AI.
+
+                Untuk sementara sistem meminta nomor siswa
+                yang cocok dengan wajah di kamera.
+
+                Nantinya bagian ini bisa diganti dengan:
+                - face-api.js
+                - TensorFlow.js
+                - MediaPipe
+                - Backend Python
+                - Database server
+            */
+
+
+            const daftarSiswa =
+                dataWajah
+                    .map(
+                        (siswa, index) =>
+                            `${index + 1}. ${siswa.nama} - ${siswa.kelas}`
+                    )
+                    .join("\n");
+
+
+            const pilihan =
+                prompt(
+                    "🔍 DEMO SCAN WAJAH\n\n" +
+                    "Masukkan nomor siswa yang sesuai " +
+                    "dengan wajah di kamera:\n\n" +
+                    daftarSiswa
+                );
+
+
+            if (pilihan === null) {
+                return;
+            }
+
+
+            const index =
+                parseInt(pilihan, 10) - 1;
+
+
+            if (
+                Number.isNaN(index) ||
+                index < 0 ||
+                index >= dataWajah.length
+            ) {
+
+                alert(
+                    "❌ Nomor siswa tidak valid."
+                );
+
+                return;
+
+            }
+
+
+            const siswa =
+                dataWajah[index];
+
+
+            /* =================================================
+               CEK ABSEN HARI INI
+            ================================================= */
+
+            const sekarang =
+                new Date();
+
+
+            const tanggal =
+                sekarang.toLocaleDateString(
+                    "id-ID"
+                );
+
+
+            const sudahAbsen =
+                dataAbsensi.some(
+                    item =>
+                        item.nis === siswa.nis &&
+                        item.tanggal === tanggal
+                );
+
+
+            if (sudahAbsen) {
+
+                alert(
+                    `⚠️ ${siswa.nama} sudah melakukan ` +
+                    `absensi hari ini.`
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               SIMPAN ABSENSI
+            ================================================= */
+
+            const absensiBaru = {
+
+                id: Date.now(),
+
+                nama: siswa.nama,
+
+                nis: siswa.nis,
+
+                kelas: siswa.kelas,
+
+                status: "Hadir",
+
+                tanggal: tanggal,
+
+                jam:
+                    sekarang.toLocaleTimeString(
+                        "id-ID"
+                    )
+
+            };
+
+
+            dataAbsensi.push(absensiBaru);
+
+            simpanData();
+
+
+            tampilkanData();
+            updateStatistik();
+
+
+            /* =================================================
+               PESAN SUKSES
+            ================================================= */
+
+            const pesan =
+                document.getElementById(
+                    "pesanScan"
+                );
+
+
+            pesan.textContent =
+                `✅ Wajah dikenali: ${siswa.nama} ` +
+                `— Absensi HADIR berhasil!`;
+
+
+            pesan.style.display = "block";
+
+
+            setTimeout(
+                () => {
+
+                    pesan.style.display = "none";
+
+                },
+                4000
+            );
+
+        }
+
+
+        /* =====================================================
+           UPDATE STATISTIK
+        ===================================================== */
+
+        function updateStatistik() {
+
+            const jumlahHadir =
+                dataAbsensi.filter(
+                    item => item.status === "Hadir"
+                ).length;
+
+
+            const jumlahIzin =
+                dataAbsensi.filter(
+                    item => item.status === "Izin"
+                ).length;
+
+
+            const jumlahSakit =
+                dataAbsensi.filter(
+                    item => item.status === "Sakit"
+                ).length;
+
+
+            const jumlahAlpa =
+                dataAbsensi.filter(
+                    item => item.status === "Alpa"
+                ).length;
+
+
+            document
+                .getElementById("jumlahHadir")
+                .textContent = jumlahHadir;
+
+
+            document
+                .getElementById("jumlahIzin")
+                .textContent = jumlahIzin;
+
+
+            document
+                .getElementById("jumlahSakit")
+                .textContent = jumlahSakit;
+
+
+            document
+                .getElementById("jumlahAlpa")
+                .textContent = jumlahAlpa;
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =====================================================
+           TAMPILKAN DATA ABSENSI
+        ===================================================== */
+
+        function tampilkanData() {
+
+            const tabel =
+                document.getElementById(
+                    "dataAbsensi"
+                );
+
+
+            const search =
+                document
+                    .getElementById("search")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const filterKelas =
+                document
+                    .getElementById("filterKelas")
+                    .value;
+
+
+            const filterStatus =
+                document
+                    .getElementById("filterStatus")
+                    .value;
+
+
+            const hasil =
+                dataAbsensi.filter(
+                    item => {
+
+                        const nama =
+                            String(item.nama)
+                                .toLowerCase();
+
+
+                        const nis =
+                            String(item.nis)
+                                .toLowerCase();
+
+
+                        const cocokSearch =
+                            nama.includes(search) ||
+                            nis.includes(search);
+
+
+                        const cocokKelas =
+                            filterKelas === "" ||
+                            item.kelas === filterKelas;
+
+
+                        const cocokStatus =
+                            filterStatus === "" ||
+                            item.status === filterStatus;
+
+
+                        return (
+                            cocokSearch &&
+                            cocokKelas &&
+                            cocokStatus
+                        );
+
+                    }
+                );
+
+
+            tabel.innerHTML = "";
+
+
+            /* DATA KOSONG */
+
+            if (hasil.length === 0) {
+
+                tabel.innerHTML = `
+                    <tr>
+                        <td
+                            colspan="7"
+                            class="empty"
+                        >
+                            📭 Tidak ada data absensi.
+                        </td>
+                    </tr>
+                `;
+
+                return;
+
+            }
+
+
+            /* TAMPILKAN DATA */
+
+            hasil.forEach(
+                (item, index) => {
+
+                    let statusClass =
+                        "status-hadir";
+
+
+                    if (item.status === "Izin") {
+                        statusClass = "status-izin";
+                    }
+
+                    if (item.status === "Sakit") {
+                        statusClass = "status-sakit";
+                    }
+
+                    if (item.status === "Alpa") {
+                        statusClass = "status-alpa";
+                    }
+
+
+                    tabel.innerHTML += `
+
+                        <tr>
+
+                            <td>
+                                ${index + 1}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    ${escapeHTML(item.nama)}
+                                </strong>
+                            </td>
+
+                            <td>
+                                ${escapeHTML(item.nis)}
+                            </td>
+
+                            <td>
+                                ${escapeHTML(item.kelas)}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status ${statusClass}"
+                                >
+                                    ${escapeHTML(item.status)}
+                                </span>
+
+                            </td>
+
+                            <td>
+                                ${escapeHTML(item.tanggal)}
+                                <br>
+
+                                <small>
+                                    ${escapeHTML(item.jam)}
+                                </small>
+                            </td>
+
+                            <td>
+
+                                <button
+                                    class="btn-hapus"
+                                    onclick="hapusData(${item.id})"
+                                >
+                                    🗑 Hapus
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           HAPUS SATU DATA
+        ===================================================== */
+
+        function hapusData(id) {
+
+            const yakin =
+                confirm(
+                    "Yakin ingin menghapus data absensi ini?"
+                );
+
+
+            if (!yakin) {
+                return;
+            }
+
+
+            dataAbsensi =
+                dataAbsensi.filter(
+                    item => item.id !== id
+                );
+
+
+            simpanData();
+
+            tampilkanData();
+            updateStatistik();
+
+        }
+
+
+        /* =====================================================
+           HAPUS SEMUA DATA
+        ===================================================== */
+
+        function hapusSemua() {
+
+            if (dataAbsensi.length === 0) {
+
+                alert(
+                    "📭 Belum ada data yang bisa dihapus."
+                );
+
+                return;
+
+            }
+
+
+            const yakin =
+                confirm(
+                    "⚠️ Yakin ingin menghapus SEMUA data absensi?"
+                );
+
+
+            if (!yakin) {
+                return;
+            }
+
+
+            dataAbsensi = [];
+
+
+            localStorage.removeItem(
+                "dataAbsensiSMK"
+            );
+
+
+            tampilkanData();
+            updateStatistik();
+
+        }
+
+
+        /* =====================================================
+           EXPORT CSV
+        ===================================================== */
+
+        function exportCSV() {
+
+            if (dataAbsensi.length === 0) {
+
+                alert(
+                    "📭 Tidak ada data untuk diekspor."
+                );
+
+                return;
+
+            }
+
+
+            let csv =
+                "No,Nama,NIS,Kelas,Status,Tanggal,Jam\n";
+
+
+            dataAbsensi.forEach(
+                (item, index) => {
+
+                    const nama =
+                        `"${String(item.nama)
+                            .replace(/"/g, '""')}"`;
+
+
+                    const nis =
+                        `"${String(item.nis)
+                            .replace(/"/g, '""')}"`;
+
+
+                    const kelas =
+                        `"${String(item.kelas)
+                            .replace(/"/g, '""')}"`;
+
+
+                    const status =
+                        `"${String(item.status)
+                            .replace(/"/g, '""')}"`;
+
+
+                    const tanggal =
+                        `"${String(item.tanggal)
+                            .replace(/"/g, '""')}"`;
+
+
+                    const jam =
+                        `"${String(item.jam)
+                            .replace(/"/g, '""')}"`;
+
+
+                    csv +=
+                        `${index + 1},` +
+                        `${nama},` +
+                        `${nis},` +
+                        `${kelas},` +
+                        `${status},` +
+                        `${tanggal},` +
+                        `${jam}\n`;
+
+                }
+            );
+
+
+            const blob =
+                new Blob(
+                    [csv],
+                    {
+                        type:
+                            "text/csv;charset=utf-8;"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href = url;
+
+
+            link.download =
+                "absensi-smk-mulia-hati-insani.csv";
+
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+
+            URL.revokeObjectURL(url);
+
+        }
+
+
+        /* =====================================================
+           AUTO LOGIN
+        ===================================================== */
+
+        if (
+            sessionStorage.getItem("sudahLogin")
+            === "true"
+        ) {
+
+            tampilkanAbsensi();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
